@@ -1,0 +1,30 @@
+<div class="container vh-100 d-flex justify-content-center align-items-center overflow-hidden">
+  <div class="card shadow col-md-4 col-lg-4">
+    <div class="card-body">
+      <h2 class="card-title text-center">Log In</h2>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <% if flash[:alert] %>
+          <div class="alert alert-danger"><%= flash[:alert] %></div>
+        <% end %>
+        <div class="form-group mb-1">
+          <%= f.label :email, class: 'form-label' %>
+          <%= f.email_field :email, class: 'form-control' %>
+        </div>
+
+        <div class="form-group mb-1">
+          <%= f.label :password, class: 'form-label' %>
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+
+        <div class="form-group mb-1">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me, class: 'form-label' %>
+        </div>
+
+        <div class="text-center mt-2">
+          <%= f.submit "Log in", class: 'btn btn-primary btn-block' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

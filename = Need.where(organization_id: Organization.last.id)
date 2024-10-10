@@ -1,0 +1,27 @@
+=> 
+[[32m#<Need:0x00007f2985c63ad0[0m
+  id: [34m[1m1[0m,
+  title: [31m[1m"[0m[31mHygiene products[0m[31m[1m"[0m,
+  description: [36m[1mnil[0m,
+  organization_id: [34m[1m2[0m,
+  created_at: Mon, 07 Oct 2024 06:44:19.433009000 UTC +00:00,
+  updated_at: Mon, 07 Oct 2024 06:44:19.433009000 UTC +00:00[32m>[0m,
+ [32m#<Need:0x00007f2985c63850[0m
+  id: [34m[1m2[0m,
+  title: [31m[1m"[0m[31mKitchenware[0m[31m[1m"[0m,
+  description: [36m[1mnil[0m,
+  organization_id: [34m[1m2[0m,
+  created_at: Mon, 07 Oct 2024 06:44:19.434100000 UTC +00:00,
+  updated_at: Mon, 07 Oct 2024 06:44:19.434100000 UTC +00:00[32m>[0m,
+ [32m#<Need:0x00007f2985c63710[0m id: [34m[1m3[0m, title: [31m[1m"[0m[31mClothes[0m[31m[1m"[0m, description: [36m[1mnil[0m, organization_id: [34m[1m2[0m, created_at: Mon, 07 Oct 2024 06:44:19.434904000 UTC +00:00, updated_at: Mon, 07 Oct 2024 06:44:19.434904000 UTC +00:00[32m>[0m,
+ [32m#<Need:0x00007f2985c635d0[0m id: [34m[1m4[0m, title: [31m[1m"[0m[31mShoes[0m[31m[1m"[0m, description: [36m[1mnil[0m, organization_id: [34m[1m2[0m, created_at: Mon, 07 Oct 2024 06:44:19.435584000 UTC +00:00, updated_at: Mon, 07 Oct 2024 06:44:19.435584000 UTC +00:00[32m>[0m,
+ [32m#<Need:0x00007f2985c63490[0m id: [34m[1m5[0m, title: [31m[1m"[0m[31mBooks[0m[31m[1m"[0m, description: [36m[1mnil[0m, organization_id: [34m[1m2[0m, created_at: Mon, 07 Oct 2024 06:44:19.436235000 UTC +00:00, updated_at: Mon, 07 Oct 2024 06:44:19.436235000 UTC +00:00[32m>[0m,
+ [32m#<Need:0x00007f2985c63350[0m id: [34m[1m6[0m, title: [31m[1m"[0m[31mTime[0m[31m[1m"[0m, description: [36m[1mnil[0m, organization_id: [34m[1m2[0m, created_at: Mon, 07 Oct 2024 06:44:19.436953000 UTC +00:00, updated_at: Mon, 07 Oct 2024 06:44:19.436953000 UTC +00:00[32m>[0m,
+ [32m#<Need:0x00007f2985c63210[0m
+  id: [34m[1m7[0m,
+  title: [31m[1m"[0m[31mEmotional support[0m[31m[1m"[0m,
+  description: [36m[1mnil[0m,
+  organization_id: [34m[1m2[0m,
+  created_at: Mon, 07 Oct 2024 06:44:19.437589000 UTC +00:00,
+  updated_at: Mon, 07 Oct 2024 06:44:19.437589000 UTC +00:00[32m>[0m,
+ [32m#<Need:0x00007f2985c630d0[0m id: [34m[1m8[0m, title: [31m[1m"[0m[31mCarpool[0m[31m[1m"[0m, description: [36m[1mnil[0m, organization_id: [34m[1m2[0m, created_at: Mon, 07 Oct 2024 06:44:19.438316000 UTC +00:00, updated_at: Mon, 07 Oct 2024 06:44:19.438316000 UTC +00:00[32m>[0m]

@@ -1,0 +1,13 @@
+<p style="color: green"><%= notice %></p>
+
+<h1><%= @organization.name %></h1>
+<p><%= @organization.description %></p>
+<p><%= @organization.contact_email %></p>
+<p><%= @organization.location %></p>
+
+<%= link_to 'Back to organizations', organizations_path %>
+
+<% if user_signed_in? %>
+  <%= link_to 'Edit this organization', edit_organization_path(@organization) %> |
+  <%= link_to 'Destroy this organization', @organization, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
