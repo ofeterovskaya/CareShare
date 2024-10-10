@@ -13,4 +13,6 @@ class User < ApplicationRecord
   # Validations
   validates :first_name, :last_name, :role, presence: true
   validates :role, inclusion: { in: %w[volunteer organization] }
+  validates :password, format: { with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}\z/,
+    message: "must include at least one lowercase letter, one uppercase letter, one digit, and one special character" }
 end
