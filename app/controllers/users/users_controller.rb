@@ -43,9 +43,13 @@ class Users::UsersController < ApplicationController
 
   def upload_avatar
     @user = current_user
-    if @user.update(avatar_params)
+    Rails.logger.debug "Avatar params: #{params.inspect}"
+    @user.avatar.attach(avatar_params[:avatar])
+    if @user.save(validate: false)
+      Rails.logger.debug "Avatar uploaded successfully"
       redirect_to user_profile_path, notice: 'Avatar uploaded successfully.'
     else
+      Rails.logger.debug "Failed to upload avatar: #{@user.errors.full_messages.join(", ")}"
       redirect_to user_profile_path, alert: 'Failed to upload avatar.'
     end
   end
