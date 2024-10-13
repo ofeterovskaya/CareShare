@@ -14,4 +14,11 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :organizations
+
+  # Маршруты для профиля пользователя
+  get 'user_profile', to: 'users/users#profile', as: 'user_profile'
+  get 'user_profile_form', to: 'users/users#profile_form', as: 'user_profile_form'
+  patch 'user_profile_form', to: 'users/users#update_profile'
+  patch 'upload_avatar', to: 'users/users#upload_avatar', as: 'upload_avatar_user'
+  delete 'user_profile', to: 'users/users#destroy', as: 'delete_user_profile'
 end

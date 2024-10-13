@@ -1,0 +1,58 @@
+<div class="container vh-100 d-flex justify-content-center align-items-center overflow-hidden">
+  <div class="row w-100">
+    <div class="col-md-4">
+      <div class="card shadow">
+        <div class="card-body text-center">
+          <h3 class="card-title"><%= @user.first_name %> <%= @user.last_name %></h3>
+          <div class="mb-3">
+            <% if @user.avatar.present? %>
+              <img src="<%= @user.avatar.url %>" class="rounded-circle" alt="User Photo">
+            <% else %>
+              <img src="https://via.placeholder.com/150" class="rounded-circle" alt="User Photo">
+            <% end %>
+          </div>
+          <div class="d-inline-flex">
+            <%= form_for @user, url: upload_avatar_user_path, html: { multipart: true }, method: :patch, class: 'd-inline' do |f| %>
+              <div class="form-group d-inline">
+                <%= f.file_field :avatar, class: 'form-control-file d-none', id: 'avatar_upload' %>
+                <%= f.submit "Upload img", class: 'btn btn-outline-primary btn-sm', style: 'background-color: transparent; border-color: primary; color: primary;', onclick: "document.getElementById('avatar_upload').click(); return false;" %>
+              </div>
+            <% end %>
+            <%= link_to 'Edit Profile', user_profile_form_path, class: 'btn btn-primary btn-sm ms-2', style: 'color: white;' %>
+          </div>
+          <p><%= @user.email %></p>
+          <p><%= @user.role.capitalize %></p>
+          <% if @user.about.present? %>
+            <p><%= @user.about %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-body">
+          <h3 class="card-title">Applications</h3>
+          <% if @user.role == 'volunteer' %>
+            <ul>
+              <% @applications.each do |application| %>
+                <li><%= application.organization.name %> - <%= application.status %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <ul>
+              <% @applications.each do |need| %>
+                <li><%= need.title %> - <%= need.description %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('avatar_upload').addEventListener('change', function() {
+    this.form.submit();
+  });
+</script>

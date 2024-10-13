@@ -19,4 +19,10 @@ class Users::SessionsController < Devise::SessionsController
     end
     redirect_to new_user_session_path
   end
+
+  protected
+
+  def after_sign_in_path_for(resource)
+    organizations_path
+  end
 end
