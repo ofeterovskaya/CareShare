@@ -1,14 +1,35 @@
-<p style="color: green"><%= notice %></p>
+<main>
+  <!-- Параллакс секция с новой фотографией -->
+  <div class="parallax" style="background-image: url(<%= asset_path '2Organizations.jpg' %>);">
+    <div class="container text-center text-light d-flex flex-column justify-content-center" style="height: 50vh;">
+      <h1 class="display-4">Organizations Needing Help</h1>
+      <p class="lead">Join us in supporting these organizations!</p>
+    </div>
+  </div>
 
-<h1>Organizations</h1>
+  <div class="container my-5">
+    <p style="color: green"><%= notice %></p>
+    
+    <h1 class="text-center mb-4">Organizations</h1>
 
-<div id="organizations">
-  <% @organizations.each do |organization| %>
-    <%= render organization %>
-    <p>
-      <%= link_to "Show this organization", organization_path(organization) %>
-    </p>
-  <% end %>
-</div>
+    <div class="row">
+      <% @organizations.each do |organization| %>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title"><%= organization.name %></h5>
+              <p class="card-text"><strong>Description:</strong> <%= organization.description %></p>
+              <p class="card-text"><strong>Contact Email:</strong> <%= organization.contact_email %></p>
+              <p class="card-text"><strong>Location:</strong> <%= organization.location %></p>
+              <%= link_to "Show this organization", organization_path(organization), class: 'btn btn-primary' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
-<%= link_to "New organization", new_organization_path %>
+    <div class="text-center">
+      <%= link_to "New Organization", new_organization_path, class: 'btn btn-success btn-lg' %>
+    </div>
+  </div>
+</main>
