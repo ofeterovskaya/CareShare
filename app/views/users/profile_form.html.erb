@@ -56,15 +56,7 @@
           <% if @user.errors[:about].any? %>
             <div class="text-danger" style="font-size: 0.8rem;"><%= @user.errors[:about].first %></div>
           <% end %>
-        </div>
-
-        <div class="form-group mb-1">
-          <%= f.label :help_option, class: 'form-label', style: 'font-size: 0.9rem;' %>
-          <%= f.select :help_option, options_for_select(@help_options), {}, class: 'form-select', style: 'font-size: 0.9rem;' %>
-          <% if @user.errors[:help_option].any? %>
-            <div class="text-danger" style="font-size: 0.8rem;"><%= @user.errors[:help_option].first %></div>
-          <% end %>
-        </div>
+        </div>  
 
         <div class="text-center mt-2 d-flex justify-content-between">
           <%= f.submit "Update Profile", class: 'btn btn-primary', style: 'font-size: 0.9rem;' %>

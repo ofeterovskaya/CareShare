@@ -3,8 +3,12 @@ class Users::UsersController < ApplicationController
 
   def profile
     @user = current_user
-    @applications = @user.role == 'volunteer' ? @user.volunteer_needs : @user.volunteer_need_assignments
-    render 'users/profile'  # Явно указываем путь к представлению
+    if @user.role == 'volunteer'
+      @applications = @user.volunteer_need_assignments
+    else
+      @applications = @user.organization_need_assignments
+    end
+    render 'users/profile'
   end
 
   def profile_form
@@ -19,13 +23,12 @@ class Users::UsersController < ApplicationController
       'Emotional support',
       'Carpool'
     ]
-    render 'users/profile_form'  # Явно указываем путь к представлению
+    render 'users/profile_form'  
   end
 
   def update_profile
     @user = current_user
-    Rails.logger.debug "Params: #{params.inspect}"  # Добавьте эту строку
-  
+    Rails.logger.debug "Params: #{params.inspect}"  
     if @user.update(user_params)
       Rails.logger.debug "Profile updated successfully"
       redirect_to user_profile_path, notice: 'Profile updated successfully.'
