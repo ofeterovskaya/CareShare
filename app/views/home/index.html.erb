@@ -1,2 +1,81 @@
-<h1>Welcome to CareShare</h1>
-<p>Please sign in to access the organizations list.</p>
+<!-- app/views/pages/home.html.erb -->
+<main>
+  <!-- Параллакс секция -->
+  <div class="parallax" style="background-image: url(<%= asset_path '1Volunteer.jpg' %>);">
+    <div class="container text-center text-light d-flex flex-column justify-content-center" style="height: 100vh;">
+      <h1 class="display-4">Welcome to CareShare</h1>
+      <p class="lead">Helping Hands for a Better Tomorrow</p>
+      <a href="<%= organizations_path %>" class="btn btn-lg btn-primary">Explore Organizations</a>
+    </div>
+  </div>
+  <!-- About Us / Our Mission Section -->
+<section class="container py-5 bg-light">
+  <div class="row text-center">
+    <div class="col-12 mb-4">
+      <h2 class="display-5">Our Mission</h2>
+      <p class="lead">At CareShare, we strive to connect volunteers and organizations to make the world a better place, one step at a time.</p>
+    </div>
+
+    <!-- Карточки с иконками (опционально) -->
+    <div class="col-md-4">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body">
+          <i class="bi bi-heart-fill text-success display-4"></i>
+          <h5 class="card-title mt-3">Community Driven</h5>
+          <p class="card-text">We believe in the power of a strong community, working together for the greater good.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body">
+          <i class="bi bi-lightbulb-fill text-warning display-4"></i>
+          <h5 class="card-title mt-3">Innovative Solutions</h5>
+          <p class="card-text">Our platform is designed to bring people together and offer innovative ways to support organizations.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body">
+          <i class="bi bi-people-fill text-primary display-4"></i>
+          <h5 class="card-title mt-3">Volunteer Together</h5>
+          <p class="card-text">We enable volunteers to collaborate and share their time and talents where they are most needed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Основной контент -->
+<section class="container py-5">
+  <div class="row text-center">
+    <div class="col-md-4">
+      <div class="card h-100 d-flex flex-column">
+        <img src="<%= asset_path '2Organizations.jpg' %>" class="card-img-top" alt="Organizations">
+        <div class="card-body d-flex flex-column flex-grow-1">
+          <h5 class="card-title">Support Organizations</h5>
+          <p class="card-text">Help non-profits fulfill their essential needs.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 d-flex flex-column">
+        <img src="<%= asset_path '3-Volun.png' %>" class="card-img-top" alt="Volunteer">
+        <div class="card-body d-flex flex-column flex-grow-1">
+          <h5 class="card-title">Become a Volunteer</h5>
+          <p class="card-text">Lend your time and skills to make a difference.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 d-flex flex-column">
+        <img src="<%= asset_path '4Group.jpg' %>" class="card-img-top" alt="Community">
+        <div class="card-body d-flex flex-column flex-grow-1">
+          <h5 class="card-title">Join the Community</h5>
+          <p class="card-text">Be part of a community driven by compassion.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
