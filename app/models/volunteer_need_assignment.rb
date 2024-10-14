@@ -1,5 +1,4 @@
 class VolunteerNeedAssignment < ApplicationRecord
-  belongs_to :volunteer
-  # belongs_to :user I'm not sure if this is correct
-  belongs_to :need
+  belongs_to :volunteer, class_name: 'User'
+  belongs_to :need, class_name: 'VolunteerNeed'
 end

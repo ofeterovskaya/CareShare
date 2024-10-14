@@ -1,0 +1,84 @@
+<div class="container d-flex justify-content-center align-items-center overflow-hidden" style="min-height: calc(100vh - 70px); padding-top: 3%; padding-bottom: 2%;">
+  <div class="card shadow col-md-6 col-lg-6" style="max-width: 600px;">
+    <div class="card-body">
+      <h3 class="card-title text-center">Edit Profile</h3>
+      <%= form_for(@user, url: user_profile_form_path, method: :patch, html: { multipart: true }) do |f| %>
+        <!-- Поля для редактирования профиля -->
+        <div class="form-group mb-1">
+          <%= f.label :first_name, class: 'form-label', style: 'font-size: 0.9rem;' %>
+          <%= f.text_field :first_name, class: 'form-control', style: 'font-size: 0.9rem;' %>
+          <% if @user.errors[:first_name].any? %>
+            <div class="text-danger" style="font-size: 0.8rem;"><%= @user.errors[:first_name].first %></div>
+          <% end %>
+        </div>
+
+        <div class="form-group mb-1">
+          <%= f.label :last_name, class: 'form-label', style: 'font-size: 0.9rem;' %>
+          <%= f.text_field :last_name, class: 'form-control', style: 'font-size: 0.9rem;' %>
+          <% if @user.errors[:last_name].any? %>
+            <div class="text-danger" style="font-size: 0.8rem;"><%= @user.errors[:last_name].first %></div>
+          <% end %>
+        </div>
+
+        <div class="form-group mb-1">
+          <%= f.label :password, class: 'form-label', style: 'font-size: 0.9rem;' %>
+          <div class="input-group">
+            <%= f.password_field :password, class: 'form-control', id: 'profile_password', style: 'font-size: 0.9rem;' %>
+            <div class="input-group-append">
+              <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility('profile_password', this)">
+                <i class="bi bi-eye-slash"></i>
+              </button>
+            </div>
+          </div>
+          <% if @user.errors[:password].any? %>
+            <div class="text-danger" style="font-size: 0.8rem;"><%= @user.errors[:password].first %></div>
+          <% end %>
+        </div>
+
+        <div class="form-group mb-1">
+          <%= f.label :password_confirmation, class: 'form-label', style: 'font-size: 0.9rem;' %>
+          <div class="input-group">
+            <%= f.password_field :password_confirmation, class: 'form-control', id: 'profile_password_confirmation', style: 'font-size: 0.9rem;' %>
+            <div class="input-group-append">
+              <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility('profile_password_confirmation', this)">
+                <i class="bi bi-eye-slash"></i>
+              </button>
+            </div>
+          </div>
+          <% if @user.errors[:password_confirmation].any? %>
+            <div class="text-danger" style="font-size: 0.8rem;"><%= @user.errors[:password_confirmation].first %></div>
+          <% end %>
+        </div>
+
+        <div class="form-group mb-1">
+          <%= f.label :about, class: 'form-label', style: 'font-size: 0.9rem;' %>
+          <%= f.text_area :about, class: 'form-control', style: 'font-size: 0.9rem;' %>
+          <% if @user.errors[:about].any? %>
+            <div class="text-danger" style="font-size: 0.8rem;"><%= @user.errors[:about].first %></div>
+          <% end %>
+        </div>  
+
+        <div class="text-center mt-2 d-flex justify-content-between">
+          <%= f.submit "Update Profile", class: 'btn btn-primary', style: 'font-size: 0.9rem;' %>
+        <% end %>
+        <%= button_to "Delete Profile", delete_user_profile_path, method: :delete, data: { confirm: "Are you sure you want to delete your profile?" }, class: 'btn btn-danger', style: 'font-size: 0.9rem;' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function togglePasswordVisibility(fieldId, button) {
+    const passwordField = document.getElementById(fieldId);
+    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordField.setAttribute('type', type);
+    const icon = button.querySelector('i');
+    if (type === 'text') {
+      icon.classList.remove('bi-eye-slash');
+      icon.classList.add('bi-eye');
+    } else {
+      icon.classList.remove('bi-eye');
+      icon.classList.add('bi-eye-slash');
+    }
+  }
+</script>
