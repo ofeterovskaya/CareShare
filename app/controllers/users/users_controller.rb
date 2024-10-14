@@ -24,9 +24,13 @@ class Users::UsersController < ApplicationController
 
   def update_profile
     @user = current_user
+    Rails.logger.debug "Params: #{params.inspect}"  # Добавьте эту строку
+  
     if @user.update(user_params)
+      Rails.logger.debug "Profile updated successfully"
       redirect_to user_profile_path, notice: 'Profile updated successfully.'
     else
+      Rails.logger.debug "Failed to update profile: #{@user.errors.full_messages.join(", ")}"
       @help_options = [
         'Hygiene products',
         'Kitchenware',
@@ -39,7 +43,7 @@ class Users::UsersController < ApplicationController
       ]
       render 'users/profile_form'
     end
-  end
+  end 
 
   def upload_avatar
     @user = current_user
