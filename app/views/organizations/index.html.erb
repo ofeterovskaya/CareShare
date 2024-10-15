@@ -29,7 +29,9 @@
     </div>
 
     <div class="text-center">
-      <%= link_to "New Organization", new_organization_path, class: 'btn btn-success btn-lg' %>
+      <% if current_user.role == 'organization' %>
+        <%= link_to "New Organization", new_organization_path, class: 'btn btn-success btn-lg' %>
+      <% end %>
     </div>
   </div>
 </main>
