@@ -2,12 +2,13 @@ class Users::UsersController < ApplicationController
   before_action :authenticate_user!
 
   def profile
-    @user = current_user
+    @user = current_user  
     if @user.role == 'volunteer'
-      @applications = @user.volunteer_need_assignments
-    else
-      @applications = @user.organization_need_assignments
+      @applications = @user.volunteer_need_assignments.includes(:organization)
+    elsif @user.role == 'organization'
+      @needs = @user.organization.needs
     end
+  
     render 'users/profile'
   end
 
