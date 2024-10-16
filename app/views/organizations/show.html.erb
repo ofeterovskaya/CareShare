@@ -9,17 +9,22 @@
           <p class="card-text"><strong>Contact Email:</strong> <%= @organization.contact_email %></p>
           <p class="card-text"><strong>Location:</strong> <%= @organization.location %></p>
           <p class="card-text"><strong>Essential Needs:</strong></p>
-          <ul>
+          <ul class="list-group">
             <% @organization.needs.each do |need| %>
-              <li><%= need.title %></li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span><%= need.title %></span>
+                <% if user_signed_in? && current_user.volunteer? %>
+                  <%= link_to 'Book', book_organization_need_assignment_path(need), class: 'btn btn-outline-success btn-sm' %>
+                <% end %>
+              </li>
             <% end %>
           </ul>
           <div class="d-flex justify-content-between mt-4">
             <%= link_to 'Back to organizations', organizations_path, class: 'btn btn-success' %>
             <% if user_signed_in? %>
               <div>
-                <%= link_to 'Edit this organization', edit_organization_path(@organization), class: 'btn btn-outline-warning' %>
-                <%= link_to 'Destroy this organization', @organization, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %>
+                <%= link_to 'Edit Organization', edit_organization_path(@organization), class: 'btn btn-outline-warning' %>
+                <%= link_to 'Delete Organization', @organization, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %>
               </div>
             <% end %>
           </div>

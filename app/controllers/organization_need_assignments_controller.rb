@@ -1,6 +1,7 @@
 class OrganizationNeedAssignmentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_organization_need_assignment, only: [:edit, :update, :destroy]
+  before_action :set_need, only: [:book]
 
   def new
     @organization_need_assignment = OrganizationNeedAssignment.new
@@ -71,10 +72,24 @@ class OrganizationNeedAssignmentsController < ApplicationController
     redirect_to user_profile_path, notice: 'Essential need deleted successfully.'
   end
 
+  def book
+    # Логика бронирования нужды
+    # Например, создание записи о бронировании в базе данных
+
+    respond_to do |format|
+      format.html { redirect_to @need.organization, notice: 'Need was successfully booked.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
   def set_organization_need_assignment
     @organization_need_assignment = OrganizationNeedAssignment.find(params[:id])
+  end
+
+  def set_need
+    @need = Need.find(params[:id])
   end
 
   def organization_need_assignment_params
