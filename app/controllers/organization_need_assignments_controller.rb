@@ -78,6 +78,6 @@ class OrganizationNeedAssignmentsController < ApplicationController
   end
 
   def organization_need_assignment_params
-    params.require(:organization_need_assignment).permit(:need_id, :start_date)
+    params.require(:organization_need_assignment).permit(:need_id)
   end
 end

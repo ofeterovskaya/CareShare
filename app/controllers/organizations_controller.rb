@@ -41,15 +41,19 @@ class OrganizationsController < ApplicationController
 
   # PATCH/PUT /organizations/1 or /organizations/1.json
   def update
-    respond_to do |format|
-      if @organization.update(organization_params)
-        format.html { redirect_to @organization, notice: "Organization was successfully updated." }
-        format.json { render :show, status: :ok, location: @organization }
+    filtered_params = organization_params 
+      if filtered_params[:need_ids] 
+        filtered_params[:need_ids].reject!(&:blank?) 
+    end
+      if @organization.update(organization_params)       
+        # format.html { redirect_to @organization, notice: "Organization was successfully updated." }
+        # format.json { render :show, status: :ok, location: @organization }
+        redirect_to @organization
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @organization.errors, status: :unprocessable_entity }
       end
-    end
+   
   end
 
   # DELETE /organizations/1 or /organizations/1.json
@@ -70,7 +74,7 @@ class OrganizationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def organization_params
-      params.require(:organization).permit(:name, :description, :contact_email, :location)
+      params.require(:organization).permit(:name, :description, :contact_email, :location, need_ids: [])
     end
 
     def authorize_user!

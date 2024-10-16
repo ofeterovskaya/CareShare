@@ -31,13 +31,12 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :essential_needs, 'Essential Needs' %>
-    <% Need.all.each do |need| %>
-      <div class="form-check">
-        <%= form.check_box :need_ids, { multiple: true }, need.id, class: 'form-check-input' %>
-        <%= form.label "need_ids_#{need.id}", need.title, class: 'form-check-label' %>
-      </div>
-    <% end %>
+    <% Need.all.distinct.pluck(:title, :id).each do |need_title, need_id| %> 
+      <div class="form-check"> 
+      <%= form.check_box :need_ids, { multiple: true, class: 'form-check-input'}, need_id, nil  %> 
+      <%= form.label "need_ids_#{need_id}", need_title, class: 'form-check-label' %>
+       </div>
+     <% end %>
   </div>
 
   <div class="form-group mt-4 d-flex justify-content-between">
