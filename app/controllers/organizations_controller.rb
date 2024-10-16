@@ -15,11 +15,12 @@ class OrganizationsController < ApplicationController
   # GET /organizations/new
   def new
     @organization = Organization.new
-    @needs = Need.all # get all from Need
+    @needs = Need.where(organization_id: @organization.id)
   end
 
   # GET /organizations/1/edit
   def edit
+    @needs = Need.where(organization_id: @organization.id)
   end
 
   # POST /organizations or /organizations.json

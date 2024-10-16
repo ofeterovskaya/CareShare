@@ -31,10 +31,10 @@
   </div>
 
   <div class="form-group">
-    <% Need.all.distinct.pluck(:title, :id).each do |need_title, need_id| %> 
+    <% @needs.each do |need| %> 
       <div class="form-check"> 
-      <%= form.check_box :need_ids, { multiple: true, class: 'form-check-input'}, need_id, nil  %> 
-      <%= form.label "need_ids_#{need_id}", need_title, class: 'form-check-label' %>
+      <%= form.check_box :need_ids, { multiple: true, class: 'form-check-input'}, need.id, nil  %> 
+      <%= form.label "need_ids_#{need.id}", need.title, class: 'form-check-label' %>
        </div>
      <% end %>
   </div>
