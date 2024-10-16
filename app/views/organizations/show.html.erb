@@ -8,6 +8,12 @@
           <p class="card-text"><strong>Description:</strong> <%= @organization.description %></p>
           <p class="card-text"><strong>Contact Email:</strong> <%= @organization.contact_email %></p>
           <p class="card-text"><strong>Location:</strong> <%= @organization.location %></p>
+          <p class="card-text"><strong>Essential Needs:</strong></p>
+          <ul>
+            <% @organization.needs.each do |need| %>
+              <li><%= need.title %></li>
+            <% end %>
+          </ul>
           <div class="d-flex justify-content-between mt-4">
             <%= link_to 'Back to organizations', organizations_path, class: 'btn btn-success' %>
             <% if user_signed_in? %>

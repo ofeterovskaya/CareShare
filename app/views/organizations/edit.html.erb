@@ -1,10 +1,12 @@
-<h1>Editing organization</h1>
-
-<%= render "form", organization: @organization %>
-
-<br>
-
-<div>
-  <%= link_to "Show this organization", @organization %> |
-  <%= link_to "Back to organizations", organizations_path %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">Editing organization</h1>
+          <%= render "form", organization: @organization %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
