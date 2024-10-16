@@ -21,19 +21,24 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :contact_email, 'Contact Email' %>
-    <%= form.email_field :contact_email, class: 'form-control' %>
-  </div>
+  <%= form.label :contact_email, 'Contact Email' %>
+  <%= form.email_field :contact_email, class: 'form-control' %>
+</div>
 
-  <div class="form-group">
-    <%= form.label :location, 'Location' %>
-    <%= form.text_field :location, class: 'form-control' %>
-  </div>
+<div class="form-group">
+  <%= form.label :location, 'Location' %>
+  <%= form.text_field :location, class: 'form-control' %>
+</div>
 
-  <div class="form-group">
-    <%= form.label :essential_needs, 'Essential Needs' %>
-    <%= form.select :need_ids, options_from_collection_for_select(Need.all, :id, :title), {}, { class: 'form-control custom-select' } %>
-  </div>
+<div class="form-group">
+  <%= form.label :essential_needs, 'Essential Needs' %>
+  <% Need.all.each do |need| %>
+    <div class="form-check">
+      <%= form.check_box :need_ids, { multiple: true }, need.id, class: 'form-check-input' %>
+      <%= form.label "need_ids_#{need.id}", need.title, class: 'form-check-label' %>
+    </div>
+  <% end %>
+</div>
 
   <div class="form-group mt-4 d-flex justify-content-between">
     <%= form.submit 'Save Organization', class: 'btn btn-primary' %>
