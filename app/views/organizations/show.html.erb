@@ -21,7 +21,7 @@
           </ul>
           <div class="d-flex justify-content-between mt-4">
             <%= link_to 'Back to organizations', organizations_path, class: 'btn btn-success' %>
-            <% if user_signed_in? %>
+            <% if user_signed_in? && current_user.role != 'volunteer' %>
               <div>
                 <%= link_to 'Edit Organization', edit_organization_path(@organization), class: 'btn btn-outline-warning' %>
                 <%= link_to 'Delete Organization', @organization, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %>
