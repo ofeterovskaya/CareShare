@@ -1,5 +1,4 @@
-<main>
-  <!-- Параллакс секция с новой фотографией -->
+<main> 
   <div class="parallax" style="background-image: url(<%= asset_path '2Organizations.jpg' %>);">
     <div class="container text-center text-light d-flex flex-column justify-content-center" style="height: 50vh;">
       <h1 class="display-4">Organizations Needing Help</h1>
@@ -29,7 +28,7 @@
     </div>
 
     <div class="text-center">
-      <% if current_user.role == 'organization' %>
+      <% if user_signed_in? && current_user.role == 'organization' %>
         <%= link_to "New Organization", new_organization_path, class: 'btn btn-success btn-lg' %>
       <% end %>
     </div>
