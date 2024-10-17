@@ -30,4 +30,9 @@ class User < ApplicationRecord
 
   # Avatar using ActiveStorage
   has_one_attached :avatar
+
+  # Method to check if the user is a volunteer
+  def volunteer?
+    role == 'volunteer'
+  end
 end

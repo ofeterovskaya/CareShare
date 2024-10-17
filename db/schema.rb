@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_14_031243) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_17_001536) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -51,11 +51,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_14_031243) do
   create_table "organization_need_assignments", force: :cascade do |t|
     t.integer "organization_id", null: false
     t.integer "need_id", null: false
-    t.date "start_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status"
+    t.integer "user_id"
     t.index ["need_id"], name: "index_organization_need_assignments_on_need_id"
     t.index ["organization_id"], name: "index_organization_need_assignments_on_organization_id"
+    t.index ["user_id"], name: "index_organization_need_assignments_on_user_id"
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -65,6 +67,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_14_031243) do
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -111,6 +114,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_14_031243) do
   add_foreign_key "needs", "organizations"
   add_foreign_key "organization_need_assignments", "needs"
   add_foreign_key "organization_need_assignments", "organizations"
+  add_foreign_key "organization_need_assignments", "users"
   add_foreign_key "users", "organizations"
   add_foreign_key "volunteer_need_assignments", "needs"
   add_foreign_key "volunteer_need_assignments", "volunteers"

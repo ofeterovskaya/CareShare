@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   patch 'upload_avatar', to: 'users/users#upload_avatar', as: 'upload_avatar_user'
   delete 'user_profile', to: 'users/users#destroy', as: 'delete_user_profile' # Удаление профиля
 
-  
-  resources :organization_need_assignments, only: [:new, :create, :edit, :update, :destroy]
+  resources :organization_need_assignments, only: [:new, :create, :edit, :update, :destroy] do
+    member do
+      get 'book'
+    end
+  end
 end

@@ -1,7 +1,7 @@
 class Organization < ApplicationRecord
-  has_many :users  
-  has_many :needs  
-  has_many :organization_need_assignments  
+  belongs_to :user
+  has_many :organization_need_assignments, dependent: :destroy
+  has_many :needs, through: :organization_need_assignments
   after_create :create_default_needs
 
   private

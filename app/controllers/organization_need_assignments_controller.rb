@@ -1,6 +1,7 @@
 class OrganizationNeedAssignmentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_organization_need_assignment, only: [:edit, :update, :destroy]
+  before_action :set_need, only: [:book]
 
   def new
     @organization_need_assignment = OrganizationNeedAssignment.new
@@ -17,7 +18,7 @@ class OrganizationNeedAssignmentsController < ApplicationController
   end
 
   def create
-    @organization_need_assignment = current_user.organization_need_assignments.new(organization_need_assignment_params)
+    @organization_need_assignment = current_user.organizations_need_assignments.new(organization_need_assignment_params)
     if @organization_need_assignment.save
       redirect_to user_profile_path, notice: 'Essential need added successfully.'
     else
@@ -71,13 +72,32 @@ class OrganizationNeedAssignmentsController < ApplicationController
     redirect_to user_profile_path, notice: 'Essential need deleted successfully.'
   end
 
+  def book
+   
+    if current_user.volunteer?  
+      @organization_need_assignment = OrganizationNeedAssignment.create( need: @need, user: current_user, status: 'booked' ) 
+      Rails.logger.debug "Volunteer booking initialized: #{@organization_need_assignment.inspect}"
+    else current_user.organization? # If the current user is an organization 
+      @organization_need_assignment = current_user.organization.organization_need_assignments.create( need: @need, status: 'booked' )
+    end    
+    if @organization_need_assignment.save
+      redirect_to user_profile_path, notice: 'Need was successfully booked.'
+    else
+      redirect_to organizations_path, alert: 'Failed to book the need.'
+    end
+  end
+
   private
 
   def set_organization_need_assignment
     @organization_need_assignment = OrganizationNeedAssignment.find(params[:id])
   end
 
+  def set_need
+    @need = Need.find(params[:id])
+  end
+
   def organization_need_assignment_params
-    params.require(:organization_need_assignment).permit(:need_id, :start_date)
+    params.require(:organization_need_assignment).permit(:need_id)
   end
 end

@@ -21,5 +21,31 @@ $primary-dark: #388E3C;
 $secondary: #0D47A1;
 $text-color: #424242;
 
+// Параллакс секция
+.parallax {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;  // Высота секции на весь экран
+  position: relative;
+}
+
+// Стиль для контента внутри параллакса
+.parallax .container {
+  position: relative;
+  z-index: 2;
+}
+
+.parallax::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); // Полупрозрачный слой для затемнения фона
+  z-index: 1;
+}
 
  @import "bootstrap";
