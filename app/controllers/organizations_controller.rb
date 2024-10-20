@@ -5,7 +5,7 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations or /organizations.json
   def index
-    @organizations = Organization.all
+    @organizations = Organization.order(sort_column + ' ' + sort_direction).page(params[:page]).per(6)
   end
 
   # GET /organizations/1 or /organizations/1.json
@@ -82,5 +82,13 @@ class OrganizationsController < ApplicationController
       unless @organization.user == current_user
         redirect_to organizations_path, alert: "You are not authorized to modify this organization."
       end
+    end
+
+    def sort_column
+      "name"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

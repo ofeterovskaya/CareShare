@@ -11,23 +11,35 @@
     
     <h1 class="text-center mb-4">Organizations</h1>
 
+    <div class="d-flex justify-content-end mb-3">
+      <%= link_to organizations_path(sort: "name", direction: params[:direction] == "asc" ? "desc" : "asc"), class: "btn btn-link" do %>
+        Name <i class="bi bi-arrow-<%= params[:direction] == "asc" ? "down" : "up" %>"></i>
+      <% end %>
+    </div>
+
     <div class="row">
       <% @organizations.each do |organization| %>
-        <div class="col-md-4 mb-4">
+        <div class="col-md-4 mb-4 d-flex align-items-stretch">
           <div class="card h-100">
-            <div class="card-body">
+            <div class="card-body d-flex flex-column">
               <h5 class="card-title"><%= organization.name %></h5>
               <p class="card-text"><strong>Description:</strong> <%= organization.description %></p>
               <p class="card-text"><strong>Contact Email:</strong> <%= organization.contact_email %></p>
               <p class="card-text"><strong>Location:</strong> <%= organization.location %></p>
-              <%= link_to "Show this organization", organization_path(organization), class: 'btn btn-primary' %>
+              <div class="mt-auto">
+                <%= link_to "Show this organization", organization_path(organization), class: 'btn btn-primary' %>
+              </div>
             </div>
           </div>
         </div>
       <% end %>
     </div>
 
-    <div class="text-center">
+    <div class="d-flex justify-content-center">
+      <%= paginate @organizations %>
+    </div>
+
+    <div class="text-center mt-4">
       <% if user_signed_in? && current_user.role == 'organization' %>
         <%= link_to "New Organization", new_organization_path, class: 'btn btn-success btn-lg' %>
       <% end %>
