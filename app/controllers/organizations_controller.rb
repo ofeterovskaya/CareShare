@@ -59,7 +59,7 @@ class OrganizationsController < ApplicationController
 
   # DELETE /organizations/1 or /organizations/1.json
   def destroy
-    @organization.destroy!
+    @organization.destroy
 
     respond_to do |format|
       format.html { redirect_to organizations_path, status: :see_other, notice: "Organization was successfully destroyed." }
