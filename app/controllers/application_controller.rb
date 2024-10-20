@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
-  # Уберите `except: [:index]`
   before_action :authenticate_user!
 
-  # Используйте `skip_before_action` для контроллеров Devise
   skip_before_action :authenticate_user!, if: :devise_controller?
 
   before_action :configure_permitted_parameters, if: :devise_controller?

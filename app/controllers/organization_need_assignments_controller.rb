@@ -18,7 +18,7 @@ class OrganizationNeedAssignmentsController < ApplicationController
   end
 
   def create
-    @organization_need_assignment = current_user.organization_need_assignments.new(organization_need_assignment_params)
+    @organization_need_assignment = OrganizationNeedAssignment.new(organization_need_assignment_params)
     if @organization_need_assignment.save
       redirect_to user_profile_path, notice: 'Essential need added successfully.'
     else
@@ -73,13 +73,7 @@ class OrganizationNeedAssignmentsController < ApplicationController
   end
 
   def book
-    if current_user.volunteer?
-      @organization_need_assignment = OrganizationNeedAssignment.new(need: @need, user: current_user, status: 'booked')
-      Rails.logger.debug "Volunteer booking initialized: #{@organization_need_assignment.inspect}"
-    elsif current_user.organization?
-      @organization_need_assignment = current_user.organization.organization_need_assignments.new(need: @need, status: 'booked')
-    end
-
+    @organization_need_assignment = OrganizationNeedAssignment.new(need: @need, organization: current_user.organization)
     if @organization_need_assignment.save
       redirect_to user_profile_path, notice: 'Need was successfully booked.'
     else
@@ -98,6 +92,6 @@ class OrganizationNeedAssignmentsController < ApplicationController
   end
 
   def organization_need_assignment_params
-    params.require(:organization_need_assignment).permit(:need_id)
+    params.require(:organization_need_assignment).permit(:need_id, :organization_id)
   end
 end

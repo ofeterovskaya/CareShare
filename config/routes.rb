@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'user_profile_form', to: 'users/users#profile_form', as: 'user_profile_form'
   patch 'user_profile_form', to: 'users/users#update_profile'
   patch 'upload_avatar', to: 'users/users#upload_avatar', as: 'upload_avatar_user'
-  delete 'user_profile', to: 'users/users#destroy', as: 'delete_user_profile' # Удаление профиля
+  delete 'user_profile', to: 'users/users#destroy', as: 'delete_user_profile'
 
   resources :organization_need_assignments, only: [:new, :create, :edit, :update, :destroy] do
     member do
