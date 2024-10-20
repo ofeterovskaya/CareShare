@@ -80,7 +80,8 @@ class OrganizationsController < ApplicationController
 
     def authorize_user!
       unless @organization.user == current_user
-        redirect_to organizations_path, alert: "You are not authorized to modify this organization."
+        flash[:alert] = "You don't have permission to perform this action."
+        redirect_to organizations_path
       end
     end
 
