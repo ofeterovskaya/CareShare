@@ -37,4 +37,9 @@ class User < ApplicationRecord
   def volunteer?
     role == 'volunteer'
   end
+
+  # Method to check if the user is an organization
+  def organization?
+    role == 'organization'
+  end
 end
