@@ -73,7 +73,7 @@ class OrganizationNeedAssignmentsController < ApplicationController
   end
 
   def book
-    @organization_need_assignment = OrganizationNeedAssignment.new(need: @need, organization: current_user.organization)
+    @organization_need_assignment = OrganizationNeedAssignment.new(need: @need, user: current_user, organization: @need.organization)
     if @organization_need_assignment.save
       redirect_to user_profile_path, notice: 'Need was successfully booked.'
     else

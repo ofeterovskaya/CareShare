@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   # Connections
   belongs_to :organization, optional: true  # Optional if it's from organization
-  has_many :volunteer_need_assignments, foreign_key: :volunteer_id
+  has_many :volunteer_need_assignments, foreign_key: :volunteer_id, dependent: :destroy
   has_many :volunteer_needs, through: :volunteer_need_assignments, source: :need
   has_many :organization_need_assignments, dependent: :destroy
   has_many :needs, through: :organization_need_assignments
@@ -20,13 +20,13 @@ class User < ApplicationRecord
   # New fields
   validates :about, length: { maximum: 500 }, allow_nil: true
   validates :help_option, inclusion: { in: [
-    'Hygiene products', 
-    'Kitchenware', 
-    'Clothes', 
-    'Shoes', 
-    'Books', 
-    'Time', 
-    'Emotional support', 
+    'Hygiene products',
+    'Kitchenware',
+    'Clothes',
+    'Shoes',
+    'Books',
+    'Time',
+    'Emotional support',
     'Carpool'
   ] }, allow_nil: true
 

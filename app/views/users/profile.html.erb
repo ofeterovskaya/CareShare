@@ -31,7 +31,7 @@
     <div class="col-md-8">
       <div class="card shadow">
         <div class="card-body">
-          <% if @user.role == 'volunteer' %>
+          <% if @user.volunteer? %>
             <h3 class="card-title">Applications</h3>
             <ul class="list-group">
               <% @user.organization_need_assignments.each do |application| %>
@@ -44,10 +44,10 @@
                 </li>
               <% end %>
             </ul>
-          <% elsif @user.role == 'organization' %>
+          <% elsif @user.organization? %>
             <h3 class="card-title">Essential Needs</h3>
             <ul class="list-group">
-              <% @needs.each do |need| %>
+              <% @user.organization.needs.each do |need| %>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                   <span><%= need.title %> - <%= need.description %></span>
                   <div>
