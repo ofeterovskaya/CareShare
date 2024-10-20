@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   root "home#index"
 
-  resources :organizations
+  resources :organizations do
+    resources :needs, controller: 'organization_needs'
+  end
 
   get 'user_profile', to: 'users/users#profile', as: 'user_profile'
   get 'user_profile_form', to: 'users/users#profile_form', as: 'user_profile_form'
@@ -18,7 +20,7 @@ Rails.application.routes.draw do
 
   resources :organization_need_assignments, only: [:new, :create, :edit, :update, :destroy] do
     member do
-      get 'book'
+      post 'book'
     end
   end
 end

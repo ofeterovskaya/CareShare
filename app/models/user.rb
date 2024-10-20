@@ -8,6 +8,8 @@ class User < ApplicationRecord
   belongs_to :organization, optional: true  # Optional if it's from organization
   has_many :volunteer_need_assignments, foreign_key: :volunteer_id
   has_many :volunteer_needs, through: :volunteer_need_assignments, source: :need
+  has_many :organization_need_assignments, dependent: :destroy
+  has_many :needs, through: :organization_need_assignments
 
   # Validations
   validates :first_name, :last_name, :role, presence: true

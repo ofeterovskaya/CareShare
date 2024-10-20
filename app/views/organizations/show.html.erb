@@ -14,7 +14,7 @@
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 <span><%= need.title %></span>
                 <% if user_signed_in? && current_user.volunteer? %>
-                  <%= link_to 'Book', book_organization_need_assignment_path(need), class: 'btn btn-outline-success btn-sm' %>
+                  <%= link_to 'Book', book_organization_need_assignment_path(need), method: :post, class: 'btn btn-outline-success btn-sm' %>
                 <% end %>
               </li>
             <% end %>
