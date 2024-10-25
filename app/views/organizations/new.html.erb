@@ -1,38 +1,8 @@
-<h1>New organization</h1>
-
-<%= form_for @organization do |f| %>
-  <div class="form-group">
-    <%= f.label :name, 'Organization Name' %>
-    <%= f.text_field :name, class: 'form-control' %>
+<h2 class="text-center">New Organization</h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <%= render 'form', organization: @organization %>
+    </div>
   </div>
-
-  <div class="form-group">
-    <%= f.label :description, 'Description' %>
-    <%= f.text_area :description, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :contact_email, 'Contact Email' %>
-    <%= f.email_field :contact_email, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :location, 'Location' %>
-    <%= f.text_field :location, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :essential_needs, 'Essential Needs' %>
-    <%= f.select :essential_needs, options_for_select(@needs.pluck(:title, :id)), {}, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.submit 'Create Organization', class: 'btn btn-primary' %>
-  </div>
-<% end %>
-
-<br>
-
-<div>
-  <%= link_to "Back to organizations", organizations_path %>
 </div>

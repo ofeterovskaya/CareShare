@@ -1,22 +1,11 @@
 <div id="<%= dom_id organization %>">
-  <p>
-    <strong>Name:</strong>
-    <%= organization.name %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= organization.description %>
-  </p>
-
-  <p>
-    <strong>Contact email:</strong>
-    <%= organization.contact_email %>
-  </p>
-
-  <p>
-    <strong>Location:</strong>
-    <%= organization.location %>
-  </p>
-
+  <div class="card h-100">
+    <div class="card-body">
+      <h5 class="card-title"><%= organization.name %></h5>
+      <p class="card-text"><strong>Description:</strong> <%= organization.description %></p>
+      <p class="card-text"><strong>Contact Email:</strong> <%= organization.contact_email %></p>
+      <p class="card-text"><strong>Location:</strong> <%= organization.location %></p>
+      <%= link_to "Show this organization", organization_path(organization), class: 'btn btn-primary' %>
+    </div>
+  </div>
 </div>

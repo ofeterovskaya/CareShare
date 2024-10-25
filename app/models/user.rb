@@ -6,8 +6,10 @@ class User < ApplicationRecord
 
   # Connections
   belongs_to :organization, optional: true  # Optional if it's from organization
-  has_many :volunteer_need_assignments, foreign_key: :volunteer_id
+  has_many :volunteer_need_assignments, foreign_key: :volunteer_id, dependent: :destroy
   has_many :volunteer_needs, through: :volunteer_need_assignments, source: :need
+  has_many :organization_need_assignments, dependent: :destroy
+  has_many :needs, through: :organization_need_assignments
 
   # Validations
   validates :first_name, :last_name, :role, presence: true
@@ -18,16 +20,26 @@ class User < ApplicationRecord
   # New fields
   validates :about, length: { maximum: 500 }, allow_nil: true
   validates :help_option, inclusion: { in: [
-    'Hygiene products', 
-    'Kitchenware', 
-    'Clothes', 
-    'Shoes', 
-    'Books', 
-    'Time', 
-    'Emotional support', 
+    'Hygiene products',
+    'Kitchenware',
+    'Clothes',
+    'Shoes',
+    'Books',
+    'Time',
+    'Emotional support',
     'Carpool'
   ] }, allow_nil: true
 
   # Avatar using ActiveStorage
   has_one_attached :avatar
+
+  # Method to check if the user is a volunteer
+  def volunteer?
+    role == 'volunteer'
+  end
+
+  # Method to check if the user is an organization
+  def organization?
+    role == 'organization'
+  end
 end

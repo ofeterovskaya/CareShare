@@ -1,6 +1,7 @@
 class OrganizationNeedAssignmentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_organization_need_assignment, only: [:edit, :update, :destroy]
+  before_action :set_need, only: [:book]
 
   def new
     @organization_need_assignment = OrganizationNeedAssignment.new
@@ -17,7 +18,7 @@ class OrganizationNeedAssignmentsController < ApplicationController
   end
 
   def create
-    @organization_need_assignment = current_user.organization_need_assignments.new(organization_need_assignment_params)
+    @organization_need_assignment = OrganizationNeedAssignment.new(organization_need_assignment_params)
     if @organization_need_assignment.save
       redirect_to user_profile_path, notice: 'Essential need added successfully.'
     else
@@ -71,13 +72,26 @@ class OrganizationNeedAssignmentsController < ApplicationController
     redirect_to user_profile_path, notice: 'Essential need deleted successfully.'
   end
 
+  def book
+    @organization_need_assignment = OrganizationNeedAssignment.new(need: @need, user: current_user, organization: @need.organization)
+    if @organization_need_assignment.save
+      redirect_to user_profile_path, notice: 'Need was successfully booked.'
+    else
+      redirect_to organizations_path, alert: 'Failed to book the need.'
+    end
+  end
+
   private
 
   def set_organization_need_assignment
     @organization_need_assignment = OrganizationNeedAssignment.find(params[:id])
   end
 
+  def set_need
+    @need = Need.find(params[:id])
+  end
+
   def organization_need_assignment_params
-    params.require(:organization_need_assignment).permit(:need_id, :start_date)
+    params.require(:organization_need_assignment).permit(:need_id, :organization_id)
   end
 end
